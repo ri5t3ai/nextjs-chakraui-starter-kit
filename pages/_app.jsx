@@ -1,15 +1,16 @@
-import App from 'next/app'
-import { ChakraProvider } from '@chakra-ui/react'
-import { Box } from '@chakra-ui/react'
+import App from "next/app";
+import { RecoilRoot } from "recoil";
+import LayoutPublic from "../containers/layout/LayoutPublic";
 
 function Application({ Component, pageProps }) {
   return (
-  <ChakraProvider>
-    <Box w='100%' minH="100vh" p={5} >
-    <Component {...pageProps} />
-    </Box>
-  </ChakraProvider>
-)}
+    <RecoilRoot>
+      <LayoutPublic>
+        <Component {...pageProps} />
+      </LayoutPublic>
+    </RecoilRoot>
+  );
+}
 
 // Only uncomment this method if you have blocking data requirements for
 // every single page in your application. This disables the ability to
@@ -20,7 +21,7 @@ Application.getInitialProps = async (appContext) => {
   // calls page's `getInitialProps` and fills `appProps.pageProps`
   const appProps = await App.getInitialProps(appContext);
 
-  return { ...appProps }
-}
+  return { ...appProps };
+};
 
-export default Application
+export default Application;
